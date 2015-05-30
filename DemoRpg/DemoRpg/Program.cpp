@@ -9,6 +9,7 @@
 //#include "Enemy.h"
 //#include "Player.h"
 #include "Vase.h"
+
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
 bool Init();
@@ -20,10 +21,11 @@ SDL_Renderer* sdlRenderer = NULL;
 SDL_Texture* tileAssetsTexture = NULL;
 char currentMap[32][24];
 //std::list <People> gamePeopleObjects;
+
 void LoadMapCSV()
 {
 	char data[24][32];
-	std::ifstream file("C:\\Users\\New\\Documents\\Visual Studio 2010\\Projects\\RPGGame\\res\\mapNumbers.csv");
+	std::ifstream file("C:\\Users\\Kristian\\Documents\\Code\\DemoRpg\\res\\Map.csv");
 	for (int row = 0; row < 24; ++row)
 	{
 		std::string line;
@@ -51,16 +53,18 @@ void LoadMapCSV()
 		printf("\n");
 	}
 }
+
 bool Init()
 {
 	bool success = true;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
+		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
+		success = false;
 	}
 	else
 	{
-		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
-		success = false;
+
 		/*if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
 		{
 		printf( "Warning: Linear texture filtering not enabled!" );
@@ -69,8 +73,7 @@ bool Init()
 			SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (sdlWindow == NULL)
 		{
-			printf("Window could not be created! SDL Error: %s\n",
-				SDL_GetError());
+			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 			success = false;
 		}
 		else
@@ -78,7 +81,6 @@ bool Init()
 			sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
 			if (sdlRenderer == NULL)
 			{
-				SDL_GetError());
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 				success = false;
 			}
@@ -92,10 +94,11 @@ bool Init()
 		}
 	}
 }
+
 bool LoadMedia()
 {
 	bool success = true;
-	tileAssetsTexture = LoadTexture("..\\res\\gametiles.bmp");
+	tileAssetsTexture = LoadTexture("..\\..\\res\\gametiles.bmp");
 	if (tileAssetsTexture == NULL)
 	{
 		success = false;
@@ -103,6 +106,7 @@ bool LoadMedia()
 	}
 	return success;
 }
+
 void Close()
 {
 	SDL_DestroyTexture(tileAssetsTexture);
@@ -113,6 +117,7 @@ void Close()
 	sdlRenderer = NULL;
 	SDL_Quit();
 }
+
 SDL_Texture* LoadTexture(std::string path)
 {
 	SDL_Texture* newTexture = NULL;
@@ -133,6 +138,7 @@ SDL_Texture* LoadTexture(std::string path)
 	}
 	return newTexture;
 }
+
 SDL_Rect GetAssetSheetPosition(char mapTile)
 {
 	if (mapTile == '1')
@@ -158,6 +164,7 @@ SDL_Rect GetAssetSheetPosition(char mapTile)
 	SDL_Rect returnRect = { 64, 0, 32, 32 };
 	return returnRect;
 }
+
 int main(int argc, char* args[])
 {
 	if (!Init())
@@ -203,5 +210,9 @@ int main(int argc, char* args[])
 				}
 			}
 		}
+
+		Close();
+
+		return 0;
 	}
 }
