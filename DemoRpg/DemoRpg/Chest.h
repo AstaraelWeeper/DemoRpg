@@ -1,5 +1,6 @@
 #pragma once
-class Chest
+#include "Items.h"
+class Chest : Items
 {
 public:
 	Chest();
