@@ -153,7 +153,7 @@ SDL_Rect GetAssetSheetPosition(char mapTile)
 	}
 	if (mapTile == '3')
 	{
-		SDL_Rect returnRect = { 0, 0, 32, 32 };
+		SDL_Rect returnRect = { 64, 0, 32, 32 };
 		return returnRect;
 	}
 	if (mapTile == '4')
@@ -161,7 +161,7 @@ SDL_Rect GetAssetSheetPosition(char mapTile)
 		SDL_Rect returnRect = { 96, 0, 32, 32 };
 		return returnRect;
 	}
-	SDL_Rect returnRect = { 64, 0, 32, 32 };
+	SDL_Rect returnRect = { 0, 0, 32, 32 };
 	return returnRect;
 }
 
