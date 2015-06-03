@@ -1,8 +1,11 @@
 #include "Chest.h"
 
 
-Chest::Chest() : Items()
+Chest::Chest(int column, int row) : Items()
 {
+	tilePositionColumn = column;
+	tilePositionRow = row;
+	assetSheetPosition = //check on sheet
 }
 
 

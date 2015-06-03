@@ -3,7 +3,7 @@
 class Chest : Items
 {
 public:
-	Chest();
+	Chest(int column, int row);
 	~Chest();
 	bool opened;
 };

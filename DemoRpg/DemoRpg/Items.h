@@ -5,14 +5,20 @@ class Items //chests, vases and doors
 
 public:
 
-	Items(char column, char row);
+	Items();
+
+	Items(int column,int row);
 
 	~Items(void);
 
-	char staticPositionColumn;//out of 32 
+	SDL_Rect GetAssetSheetPosition();
+	SDL_Rect GetMapPosition();
 
-	char staticPositionRow;//out of 24
+protected:
+	SDL_Rect assetSheetPosition;
+	SDL_Rect mapPosition;
 
+	int tilePositionColumn;//tiles, out of 32 
 
-
+	int tilePositionRow;//tiles, out of 24
 };

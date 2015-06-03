@@ -16,12 +16,15 @@ const int SCREEN_HEIGHT = 768;
 bool Init();
 bool LoadMedia();
 void Close();
+void InitialiseItems();
+void InitialiseEnemies();
 SDL_Texture* LoadTexture(std::string path);
 SDL_Window* sdlWindow = NULL;
 SDL_Renderer* sdlRenderer = NULL;
 SDL_Texture* tileAssetsTexture = NULL;
 char currentMap[32][24];
-//std::list <People> gamePeopleObjects;
+typedef std::list <People*> gamePeopleObjects;
+typedef std::list<Items*> gameItemObjects;
 Player player (10,10); //give starting positions. add enemies to array, add items to array. Put all this in a method
 
 enum KeyPressDirections
@@ -139,6 +142,7 @@ SDL_Texture* LoadTexture(std::string path)
 	}
 	else
 	{
+		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) ); //need to get the right RGB for the pink
 		newTexture = SDL_CreateTextureFromSurface(sdlRenderer, loadedSurface);
 		
 		if (newTexture == NULL)
@@ -172,10 +176,21 @@ SDL_Rect GetAssetSheetPosition(char mapTile)
 		SDL_Rect returnRect = { 96, 0, 32, 32 };
 		return returnRect;
 	}
+	else //??was missing
+	{
 	SDL_Rect returnRect = { 0, 0, 32, 32 };
 	return returnRect;
+	}
 }
 
+void InitialiseEnemies()
+{
+}
+
+void InitialiseItems()
+{
+
+}
 int main(int argc, char* args[])
 {
 	if (!Init())
@@ -192,7 +207,8 @@ int main(int argc, char* args[])
 		else
 		{
 			//init objects
-			
+			InitialiseItems();
+			InitialiseEnemies();
 			//Game Loop 
 			bool quit = false;
 			SDL_Event e;
@@ -210,28 +226,27 @@ int main(int argc, char* args[])
 
 					 switch( e.key.keysym.sym )
                         {
-					        case SDLK_://attack button
+					        case SDLK_SPACE://attack button
 							player.attack();
 							break;
 
                             case SDLK_UP:
-                            player::move();
+                            player::move(KEY_PRESS_UP);
                             break;
 
                             case SDLK_DOWN:
-                            
+                            player::move(KEY_PRESS_DOWN);
                             break;
 
                             case SDLK_LEFT:
-                            
+                            player::move(KEY_PRESS_LEFT)
                             break;
 
                             case SDLK_RIGHT:
-                           
+                            player::move(KEY_PRESS_RIGHT)
                             break;
 
                             default:
-                            
                             break;
                         }
 					}
@@ -251,7 +266,19 @@ int main(int argc, char* args[])
 						}
 					}
 					//place any other object bitmaps on the map. for loop of gameObject array, then do as above
-					//THEN make all people attacking status = false
+					for(sid::list<People*>::iterator it = gamePeopleObjects.begin(); it != gamePeopleObjects.end(); ++it)
+					{
+						SDL_Rect itemAssetSheetPosition = *it.GetAssetSheetPosition();
+						SDL Rect itemMapPosition = it*GetMapPosition();
+						SDL_RenderCopy(sdlRenderer,	tileAssetsTexture, &itemAssetSheetPositionn, &itemMapPosition);
+					}
+					for(sid::list<Items*>::iterator it = itemPeopleObjects.begin(); it != itemPeopleObjects.end(); ++it)
+					{
+						SDL_Rect itemAssetSheetPosition = *it.GetAssetSheetPosition();
+						SDL Rect itemMapPosition = it*GetMapPosition();
+						SDL_RenderCopy(sdlRenderer,	tileAssetsTexture, &itemAssetSheetPositionn, &itemMapPosition);
+					}
+				
 					SDL_RenderPresent(sdlRenderer);
 				}
 			}

@@ -5,6 +5,7 @@ People::People(int x, int y)
 {
 	mapPositionX = x;
 	mapPositionY = y;
+	mapPosition = { tilePositionColumn, tilePositionRow, 32, 32 };
 }
 
 
@@ -35,6 +36,43 @@ int People::attackCalculation()
 void People::UpdateHealth(int damage)
 {
 	currentHealth -=damage;
+}
+
+SDL_Rect People::GetAssetSheetPosition()
+{
+	if(attackState)//sword down
+	{
+		switch(facingDirection)
+		{
+		case 1:
+			return assetSheetPositionLeft;
+		case 2:
+			return assetSheetPositionUp;
+		case 3:
+			return assetSheetPositionRight;
+		case 4:
+			return assetSheetPositionDown;
+		}
+	}
+	else //sword up
+	{
+		switch(facingDirection)
+		{
+		case 1:
+			return assetSheetPositionLeftAttack;
+		case 2:
+			return assetSheetPositionUpAttack;
+		case 3:
+			return assetSheetPositionRightAttack;
+		case 4:
+			return assetSheetPositionDownAttack;
+		}
+	}
+
+
+SDL_Rect People::GetMapPosition()
+{
+	return mapPosition;
 }
 
 void People::Move(int direction)
