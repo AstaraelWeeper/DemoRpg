@@ -5,7 +5,10 @@ class Door :
 	public Items
 {
 public:
-	Door(char column, char row) :Items(column, row){};
+	Door(char column, char row) :Items(column, row){}; //did this have to be defined again in door.cpp?
 	~Door(void);
 	bool Open();
+	bool opened;
+	SDL_Rect visibleArea; //unsure how to do this.
+
 };

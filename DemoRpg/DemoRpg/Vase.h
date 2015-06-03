@@ -7,7 +7,8 @@ class Vase :
 public:
 	Vase(char column, char row) :Items(column, row){};
 	~Vase(void);
-	int Open();
+	int Update();
+	int health;
 private:
 	int givesHealth;
 };

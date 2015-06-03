@@ -39,8 +39,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Kristian\Documents\Code\DemoRpg\lib\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Kristian\Documents\Code\DemoRpg\lib\SDL\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Rachel Griffiths\Documents\GitHub\DemoRpg\lib\SDL\include;C:\Users\Kristian\Documents\Code\DemoRpg\lib\SDL\include</IncludePath>
+    <LibraryPath>C:\Users\Rachel Griffiths\Documents\GitHub\DemoRpg\lib\SDL\lib\x86;C:\Users\Kristian\Documents\Code\DemoRpg\lib\SDL\lib\x86;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <SourcePath>$(SourcePath)</SourcePath>
+    <ExcludePath>$(ExcludePath)</ExcludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -69,22 +73,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Items.cpp" />
+    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="People.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Program.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Vase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Items.h" />
+    <ClInclude Include="Knight.h" />
     <ClInclude Include="People.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Vase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

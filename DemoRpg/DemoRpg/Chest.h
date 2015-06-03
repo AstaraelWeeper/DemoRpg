@@ -5,5 +5,6 @@ class Chest : Items
 public:
 	Chest();
 	~Chest();
+	bool opened;
 };
 

@@ -4,7 +4,8 @@ class Player :
 	public People
 {
 public:
-	Player();
+	Player(int, int);
 	~Player();
+	void Attack();
 };
 

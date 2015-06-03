@@ -7,7 +7,8 @@
 #include <list>
 //#include "Chest.h"
 //#include "Enemy.h"
-//#include "Player.h"
+#include "People.h"
+#include "Player.h"
 #include "Vase.h"
 
 const int SCREEN_WIDTH = 1024;
@@ -21,6 +22,16 @@ SDL_Renderer* sdlRenderer = NULL;
 SDL_Texture* tileAssetsTexture = NULL;
 char currentMap[32][24];
 //std::list <People> gamePeopleObjects;
+Player player (10,10); //give starting positions. add enemies to array, add items to array. Put all this in a method
+
+enum KeyPressDirections
+{
+    KEY_PRESS_SURFACE_DEFAULT,
+    KEY_PRESS_LEFT,
+    KEY_PRESS_UP,
+    KEY_PRESS_RIGHT,
+    KEY_PRESS_DOWN,
+};
 
 void LoadMapCSV()
 {
@@ -180,6 +191,8 @@ int main(int argc, char* args[])
 		}
 		else
 		{
+			//init objects
+			
 			//Game Loop 
 			bool quit = false;
 			SDL_Event e;
@@ -191,8 +204,41 @@ int main(int argc, char* args[])
 					{
 						quit = true;
 					}
+
+					else if (e.type == SDL_KEYDOWN) //update player based on input
+					{
+
+					 switch( e.key.keysym.sym )
+                        {
+					        case SDLK_://attack button
+							player.attack();
+							break;
+
+                            case SDLK_UP:
+                            player::move();
+                            break;
+
+                            case SDLK_DOWN:
+                            
+                            break;
+
+                            case SDLK_LEFT:
+                            
+                            break;
+
+                            case SDLK_RIGHT:
+                           
+                            break;
+
+                            default:
+                            
+                            break;
+                        }
+					}
+					//update enemies
+					//update items
 					SDL_RenderClear(sdlRenderer);
-					for (int j = 0; j < 24; j++)
+					for (int j = 0; j < 24; j++) //render map
 					{
 						for (int i = 0; i < 32; i++)
 						{
