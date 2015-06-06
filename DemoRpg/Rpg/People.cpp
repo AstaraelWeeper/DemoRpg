@@ -40,9 +40,9 @@ void People::UpdateHealth(int damage)
 
 SDL_Rect People::GetAssetSheetPosition()
 {
-	if(attackState)//sword down
+	if (attackState)//sword down
 	{
-		switch(facingDirection)
+		switch (facingDirection)
 		{
 		case 1:
 			return assetSheetPositionLeft;
@@ -56,7 +56,7 @@ SDL_Rect People::GetAssetSheetPosition()
 	}
 	else //sword up
 	{
-		switch(facingDirection)
+		switch (facingDirection)
 		{
 		case 1:
 			return assetSheetPositionLeftAttack;
@@ -68,7 +68,7 @@ SDL_Rect People::GetAssetSheetPosition()
 			return assetSheetPositionDownAttack;
 		}
 	}
-
+}
 
 SDL_Rect People::GetMapPosition()
 {

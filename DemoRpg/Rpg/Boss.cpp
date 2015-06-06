@@ -2,7 +2,7 @@
 #include "Projectile.h"
 
 
-Boss::Boss(short column, short row):People(column,row)
+Boss::Boss(short column, short row):Enemy(column,row)
 {
 	maxHealth = 50;
 	damage = 0;

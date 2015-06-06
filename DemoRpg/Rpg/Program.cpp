@@ -23,8 +23,8 @@ SDL_Window* sdlWindow = NULL;
 SDL_Renderer* sdlRenderer = NULL;
 SDL_Texture* tileAssetsTexture = NULL;
 char currentMap[32][24];
-typedef std::list <People*> gamePeopleObjects;
-typedef std::list<Items*> gameItemObjects;
+std::list <People*> gamePeopleObjects;
+std::list<Items*> gameItemObjects;
 Player player (10,10); //give starting positions. add enemies to array, add items to array. Put all this in a method
 
 enum KeyPressDirections
@@ -227,23 +227,23 @@ int main(int argc, char* args[])
 					 switch( e.key.keysym.sym )
                         {
 					        case SDLK_SPACE://attack button
-							player.attack();
+							player.Attack();
 							break;
 
                             case SDLK_UP:
-                            player::move(KEY_PRESS_UP);
+                            player.Move(KEY_PRESS_UP);
                             break;
 
                             case SDLK_DOWN:
-                            player::move(KEY_PRESS_DOWN);
+                            player.Move(KEY_PRESS_DOWN);
                             break;
 
                             case SDLK_LEFT:
-                            player::move(KEY_PRESS_LEFT)
+								player.Move(KEY_PRESS_LEFT);
                             break;
 
                             case SDLK_RIGHT:
-                            player::move(KEY_PRESS_RIGHT)
+								player.Move(KEY_PRESS_RIGHT);
                             break;
 
                             default:
@@ -269,14 +269,14 @@ int main(int argc, char* args[])
 					for(std::list<People*>::iterator it = gamePeopleObjects.begin(); it != gamePeopleObjects.end(); ++it)
 					{
 						SDL_Rect itemAssetSheetPosition = (*it)->GetAssetSheetPosition();
-						SDL Rect itemMapPosition = it*GetMapPosition();
-						SDL_RenderCopy(sdlRenderer,	tileAssetsTexture, &itemAssetSheetPositionn, &itemMapPosition);
+						SDL_Rect itemMapPosition = (*it)->GetMapPosition();
+						SDL_RenderCopy(sdlRenderer,	tileAssetsTexture, &itemAssetSheetPosition, &itemMapPosition);
 					}
-					for(std::list<Items*>::iterator it = itemPeopleObjects.begin(); it != itemPeopleObjects.end(); ++it)
+					for (std::list<Items*>::iterator it = gameItemObjects.begin(); it != gameItemObjects.end(); ++it)
 					{
-						SDL_Rect itemAssetSheetPosition = *it.GetAssetSheetPosition();
-						SDL Rect itemMapPosition = it*GetMapPosition();
-						SDL_RenderCopy(sdlRenderer,	tileAssetsTexture, &itemAssetSheetPositionn, &itemMapPosition);
+						SDL_Rect itemAssetSheetPosition = (*it)->GetAssetSheetPosition();
+						SDL_Rect itemMapPosition = (*it)->GetMapPosition();
+						SDL_RenderCopy(sdlRenderer,	tileAssetsTexture, &itemAssetSheetPosition, &itemMapPosition);
 					}
 				
 					SDL_RenderPresent(sdlRenderer);

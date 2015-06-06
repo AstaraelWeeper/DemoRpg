@@ -10,5 +10,5 @@ Vase::Vase(short column, short row) :Items(column, row)
 
 int Vase::Update()
 {
-	
+	return 0;
 }

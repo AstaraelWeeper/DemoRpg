@@ -1,7 +1,7 @@
 #include "Chest.h"
 
 
-Chest::Chest(int column, int row) : Items()
+Chest::Chest(short column, short row) : Items(column,row)
 {
 	tilePositionColumn = column;
 	tilePositionRow = row;

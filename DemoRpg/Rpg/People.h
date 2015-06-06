@@ -14,7 +14,6 @@ public:
     SDL_Rect GetAssetSheetPosition();
 	SDL_Rect GetMapPosition();
 
-
 protected:
 	
 	bool attackState; 
