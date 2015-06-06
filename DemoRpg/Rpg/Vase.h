@@ -5,7 +5,7 @@ class Vase :
 	public Items
 {
 public:
-	Vase(char column, char row) :Items(column, row){};
+	Vase(short column, short row);
 	~Vase(void);
 	int Update();
 	int health;

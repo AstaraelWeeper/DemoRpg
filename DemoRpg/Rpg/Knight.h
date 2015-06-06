@@ -4,7 +4,7 @@ class Knight :
 	public Enemy
 {
 public:
-	Knight(void);
+	Knight(short column, short row);
 	~Knight(void);
 };
 

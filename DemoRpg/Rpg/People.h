@@ -5,8 +5,7 @@
 class People
 {
 public:
-	People();
-	People(int, int);
+	People(short column, short row);
 	virtual ~People();
 	virtual int attackCalculation();
 	virtual void Attack();

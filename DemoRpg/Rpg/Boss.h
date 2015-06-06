@@ -4,7 +4,7 @@ class Boss :
 	public Enemy
 {
 public:
-	Boss(void);
+	Boss(short column, short row);
 	~Boss(void);
 	void CheckAttackRange();
 	void FacePlayer();

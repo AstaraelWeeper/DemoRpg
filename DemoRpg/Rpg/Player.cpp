@@ -1,10 +1,8 @@
 #include "Player.h"
 
 
-Player::Player(int x, int y)
+Player::Player(short column, short row):People(column,row)
 {
-    mapPositionX = x;
-	mapPositionY = y;
 	damage = 5;
 	maxHealth = 35;
 }

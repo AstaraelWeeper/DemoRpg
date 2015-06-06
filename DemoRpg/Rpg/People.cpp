@@ -1,11 +1,11 @@
 #include "People.h"
 #include <random>
  
-People::People(int x, int y)
+People::People(short x, short y)
 {
-	mapPositionX = x;
-	mapPositionY = y;
-	mapPosition = { tilePositionColumn, tilePositionRow, 32, 32 };
+	mapPositionX = x*32;
+	mapPositionY = y*32;
+	mapPosition = { mapPositionX, mapPositionY, 32, 32 };
 }
 
 

@@ -1,6 +1,6 @@
 #include "Vase.h"
 
-Vase::Vase(char column , char row)
+Vase::Vase(short column, short row) :Items(column, row)
 {
 	health = 1;
 	tilePositionColumn = column;

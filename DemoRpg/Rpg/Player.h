@@ -4,7 +4,7 @@ class Player :
 	public People
 {
 public:
-	Player(int, int);
+	Player(short column, short row);
 	~Player();
 	void Attack();
 };

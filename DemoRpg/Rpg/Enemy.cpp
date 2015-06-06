@@ -1,10 +1,9 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy()
+Enemy::Enemy(short column, short row) :People(column,row)
 {
-	maxHealth = 30;
-	damage = 5;
+	
 }
 
 

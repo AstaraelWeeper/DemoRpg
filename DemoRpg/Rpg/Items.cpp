@@ -1,13 +1,13 @@
 #include "Items.h"
 
-Items::Items(char column, char row)
+Items::Items(short column, short row)
 {
 	tilePositionColumn = column;
 	tilePositionRow = row;
 	mapPosition = { tilePositionColumn * 32, tilePositionRow * 32, 32, 32 };
 }
 
-SDL_Rect Items::GetAssetSheetPosition
+SDL_Rect Items::GetAssetSheetPosition()
 {
 	return assetSheetPosition;
 }

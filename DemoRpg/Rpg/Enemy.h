@@ -4,7 +4,7 @@ class Enemy :
 	public People
 {
 public:
-	Enemy();
+	Enemy(short column, short row);
 	~Enemy();
 	void Attack();
 	void CompleteAttack();
