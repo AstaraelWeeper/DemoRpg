@@ -15,8 +15,7 @@ public:
 	SDL_Rect GetMapPosition();
 
 protected:
-	
-	bool attackState; 
+	int attackState; 
 	int hitChance; //int between 0 and 100 to represent % chance of hitting
 	int maxHealth;
 	int currentHealth;
@@ -26,10 +25,14 @@ protected:
 	SDL_Rect assetSheetPositionUp;
 	SDL_Rect assetSheetPositionRight;
 	SDL_Rect assetSheetPositionDown;
-	SDL_Rect assetSheetPositionLeftAttack;
-	SDL_Rect assetSheetPositionUpAttack;
-	SDL_Rect assetSheetPositionRightAttack;
-	SDL_Rect assetSheetPositionDownAttack;
+	SDL_Rect assetSheetPositionLeftAttack1;
+	SDL_Rect assetSheetPositionUpAttack1;
+	SDL_Rect assetSheetPositionRightAttack1;
+	SDL_Rect assetSheetPositionDownAttack1;
+	SDL_Rect assetSheetPositionLeftAttack2;
+	SDL_Rect assetSheetPositionUpAttack2;
+	SDL_Rect assetSheetPositionRightAttack2;
+	SDL_Rect assetSheetPositionDownAttack2;
     int mapPositionX; //pixels, not tiles
 	int mapPositionY; //pixels, not tiles
 	SDL_Rect mapPosition;

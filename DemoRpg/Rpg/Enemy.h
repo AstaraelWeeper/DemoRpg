@@ -10,6 +10,6 @@ public:
 	void CompleteAttack();
 	void FindMoveDirection(); //strings don't like switch. Translate the move input direction into an int
 protected:
-	
+	int attackRange; //proximity needed to attack
 };
 

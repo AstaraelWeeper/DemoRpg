@@ -6,6 +6,7 @@ Boss::Boss(short column, short row):Enemy(column,row)
 {
 	maxHealth = 50;
 	damage = 0;
+	attackRange = 4 * 32;
 }
 
 

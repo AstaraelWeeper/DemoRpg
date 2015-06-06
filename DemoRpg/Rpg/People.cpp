@@ -3,6 +3,7 @@
  
 People::People(short x, short y)
 {
+	attackState = 0;
 	mapPositionX = x*32;
 	mapPositionY = y*32;
 	mapPosition = { mapPositionX, mapPositionY, 32, 32 };
@@ -23,12 +24,10 @@ int People::attackCalculation()
 
    if(random_integer > (100-hitChance))
    {
-	   attackState = false;
 	   return damage;
    }
    else
    {
-	   attackState = false;
 	   return 0;
    }
 }
@@ -40,7 +39,7 @@ void People::UpdateHealth(int damage)
 
 SDL_Rect People::GetAssetSheetPosition()
 {
-	if (attackState)//sword down
+	if (attackState==0)
 	{
 		switch (facingDirection)
 		{
@@ -54,18 +53,32 @@ SDL_Rect People::GetAssetSheetPosition()
 			return assetSheetPositionDown;
 		}
 	}
-	else //sword up
+	else if(attackState ==1) //sword up
 	{
 		switch (facingDirection)
 		{
 		case 1:
-			return assetSheetPositionLeftAttack;
+			return assetSheetPositionLeftAttack1;
 		case 2:
-			return assetSheetPositionUpAttack;
+			return assetSheetPositionUpAttack1;
 		case 3:
-			return assetSheetPositionRightAttack;
+			return assetSheetPositionRightAttack1;
 		case 4:
-			return assetSheetPositionDownAttack;
+			return assetSheetPositionDownAttack1;
+		}
+	}
+	else if (attackState == 2) 
+	{
+		switch (facingDirection)
+		{
+		case 1:
+			return assetSheetPositionLeftAttack2;
+		case 2:
+			return assetSheetPositionUpAttack2;
+		case 3:
+			return assetSheetPositionRightAttack2;
+		case 4:
+			return assetSheetPositionDownAttack2;
 		}
 	}
 }
