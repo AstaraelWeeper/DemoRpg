@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{704A801C-FDE6-4961-AC60-8B169A6B1007}</ProjectGuid>
-    <RootNamespace>DemoRpg</RootNamespace>
+    <ProjectGuid>{E8C21FFA-0947-45B9-8BEB-78DBAE724C35}</ProjectGuid>
+    <RootNamespace>Rpg</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,12 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Rachel\Documents\Visual Studio 2013\Projects\DemoRpg\lib\SDL\include;C:\Program Files (x86)\Windows Kits\8.1\Include\shared</IncludePath>
+    <IncludePath>C:\Users\Rachel\Documents\Visual Studio 2013\Projects\DemoRpg\lib\SDL\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Rachel\Documents\Visual Studio 2013\Projects\DemoRpg\lib\SDL\lib\x86;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <ReferencePath>$(ReferencePath)</ReferencePath>
-    <SourcePath>$(SourcePath)</SourcePath>
-    <ExcludePath>$(ExcludePath)</ExcludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -73,6 +69,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="Chest.h" />
+    <ClInclude Include="Door.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Items.h" />
+    <ClInclude Include="Knight.h" />
+    <ClInclude Include="People.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Vase.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Door.cpp" />
@@ -84,18 +92,6 @@
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Vase.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Boss.h" />
-    <ClInclude Include="Chest.h" />
-    <ClInclude Include="Door.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Items.h" />
-    <ClInclude Include="Knight.h" />
-    <ClInclude Include="People.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Projectile.h" />
-    <ClInclude Include="Vase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
