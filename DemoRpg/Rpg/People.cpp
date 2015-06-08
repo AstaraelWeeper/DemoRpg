@@ -14,7 +14,10 @@ People::~People()
 {
 }
 
-
+int People::GetFacingDirection()
+{
+	return facingDirection;
+}
 int People::attackCalculation()
 {
    std::random_device rd;     // only used once to initialise (seed) engine

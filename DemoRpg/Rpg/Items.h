@@ -9,6 +9,7 @@ public:
 	~Items(void);
 	SDL_Rect GetAssetSheetPosition();
 	SDL_Rect GetMapPosition();
+	bool visible; //translate to an alpha value in main
 
 protected:
 	SDL_Rect assetSheetPosition;

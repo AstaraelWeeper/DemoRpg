@@ -13,6 +13,7 @@ public:
 	void Move(int);
     SDL_Rect GetAssetSheetPosition();
 	SDL_Rect GetMapPosition();
+	int GetFacingDirection();
 
 protected:
 	int attackState; 

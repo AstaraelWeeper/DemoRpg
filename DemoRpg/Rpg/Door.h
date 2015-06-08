@@ -5,7 +5,7 @@ class Door :
 	public Items
 {
 public:
-	Door(char column, char row,bool boss); //did this have to be defined again in door.cpp?
+	Door(short column, short row,bool boss); //did this have to be defined again in door.cpp?
 	~Door(void);
 	bool Open();
 	bool opened;

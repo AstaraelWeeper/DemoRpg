@@ -7,5 +7,7 @@ public:
 	Player(short column, short row);
 	~Player();
 	void Attack();
+	int GetXPosition();
+	int GetYPosition();
 };
 

@@ -18,3 +18,13 @@ void Player::Attack()
 	attackState = true;
 }
 
+
+int Player::GetXPosition()
+{
+	return mapPositionX;
+}
+
+int Player::GetYPosition()
+{
+	return mapPositionY;
+}

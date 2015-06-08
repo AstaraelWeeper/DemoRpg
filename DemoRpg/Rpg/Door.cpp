@@ -1,5 +1,5 @@
 #include "Door.h"
-Door::Door(char column, char row, bool boss) : Items(column,row)
+Door::Door(short column, short row, bool boss) : Items(column,row)
 {
     tilePositionColumn = column;
 	tilePositionRow = row;

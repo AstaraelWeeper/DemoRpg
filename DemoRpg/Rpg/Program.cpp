@@ -5,11 +5,14 @@
 #include <sstream>
 #include<iostream>
 #include <list>
-//#include "Chest.h"
-//#include "Enemy.h"
+#include "Chest.h"
+#include "Enemy.h"
+#include "Knight.h"
+#include "Boss.h"
 #include "People.h"
 #include "Player.h"
 #include "Vase.h"
+#include "Door.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
@@ -23,6 +26,8 @@ SDL_Window* sdlWindow = NULL;
 SDL_Renderer* sdlRenderer = NULL;
 SDL_Texture* tileAssetsTexture = NULL;
 char currentMap[32][24];
+Uint8 mapAlphaValues[32][24]; //0 is tranparent (show black background), 255 is visible
+SDL_Rect searchArea;
 std::list <People*> gamePeopleObjects;
 std::list<Items*> gameItemObjects;
 Player player (10,10); //give starting positions. add enemies to array, add items to array. Put all this in a method
@@ -34,6 +39,14 @@ enum KeyPressDirections
     KEY_PRESS_UP,
     KEY_PRESS_RIGHT,
     KEY_PRESS_DOWN,
+};
+
+enum facingDirections
+{
+	Left = 1,
+	Up,
+	Right,
+	Down,
 };
 
 void LoadMapCSV()
@@ -182,14 +195,77 @@ SDL_Rect GetAssetSheetPosition(char mapTile)
 	return returnRect;
 	}
 }
-
+void initialiseAlphaValues()
+{
+	for (int j = 0; j < 24; j++) //render map
+	{
+		for (int i = 0; i < 32; i++)
+		{
+			mapAlphaValues[i][j] = 255;
+		}
+	}
+}
 void InitialiseEnemies()
 {
+	Knight enemy1 = Knight(2, 6);
+	Knight enemy2 = Knight(30, 12);
+	Knight enemy3 = Knight(9, 4);
+	Knight enemy4 = Knight(10, 18);
+	Knight enemy5 = Knight(10, 22);
+	Knight enemy6 = Knight(13, 8);
+	Knight enemy7 = Knight(17, 18);
+	Knight enemy8 = Knight(17, 21);
+	Knight enemy9 = Knight(23, 14);
+	Knight enemy10 = Knight(24, 2);
+	Knight enemy11 = Knight(26, 20);
+	Boss boss = Boss(2, 18);
 }
 
-void InitialiseItems()
+void InitialiseItems() //make global
 {
+	//doors x 9 normal, 1 boss
+	Door door1 = Door(3, 4, false);
+	Door door2 = Door(6, 12, false);
+	Door door3 = Door(6, 19, false);
+	Door door4 = Door(16, 7, false);
+	Door door5 = Door(14, 20, false);
+	Door door6 = Door(19, 7, false);
+	Door door7 = Door(22, 5, false);
+	Door door8 = Door(26, 15, false);
+	Door door9 = Door(28, 20, false);
+	Door bossDoor = Door(24, 21, true);
 
+	Vase vase1 = Vase(7, 22);
+	Vase vase2 = Vase(9, 2);
+	Vase vase3 = Vase(20, 12);
+	Vase vase4 = Vase(22, 17);
+
+	Chest chest1 = Chest(7, 2, false);
+	Chest chest2 = Chest(14, 12, false);
+	Chest chest3 = Chest(29, 2, false);
+	Chest chestKey = Chest(28, 9, true);
+
+}
+
+void UpdateSearchArea(facingDirections facingDirection)//probably should be a check for anything and then handled
+{
+	int playerPositionX = player.GetXPosition();
+	int playerPositionY = player.GetYPosition();
+	switch (facingDirection)
+	{
+	  case Left:
+		searchArea = { playerPositionX - 32, playerPositionY, 32, 32 };
+		break;
+	  case Up:
+		  searchArea = { playerPositionX, playerPositionY - 32, 32, 32 };
+		  break;
+	  case Right:
+		  searchArea = { playerPositionX + 32, playerPositionY, 32, 32 };
+		  break;
+	  case Down:
+		  searchArea = { playerPositionX, playerPositionY + 32, 32, 32 };
+		  break;
+	}
 }
 int main(int argc, char* args[])
 {
@@ -206,6 +282,7 @@ int main(int argc, char* args[])
 		}
 		else
 		{
+			initialiseAlphaValues;
 			//init objects
 			InitialiseItems();
 			InitialiseEnemies();
@@ -228,6 +305,9 @@ int main(int argc, char* args[])
                         {
 					        case SDLK_SPACE://attack button
 							player.Attack();
+							int facingDirection = player.GetFacingDirection;
+							UpdateSearchArea(static_cast<facingDirections>(facingDirection));
+							//loop through enemies and vases
 							break;
 
                             case SDLK_UP:
@@ -246,6 +326,12 @@ int main(int argc, char* args[])
 								player.Move(KEY_PRESS_RIGHT);
                             break;
 
+							case SDLK_RETURN:
+								int facingDirection = player.GetFacingDirection;
+								UpdateSearchArea(static_cast<facingDirections>(facingDirection));
+								//loop through doors and chests
+								break;
+
                             default:
                             break;
                         }
@@ -261,6 +347,7 @@ int main(int argc, char* args[])
 							{
 								SDL_Rect assetSheetPosition = GetAssetSheetPosition(currentMap[i][j]);
 								SDL_Rect currentMapPosition = { i * 32, j * 32, 32, 32 };
+								//get alpha value and set
 								SDL_RenderCopy(sdlRenderer,	tileAssetsTexture, &assetSheetPosition, &currentMapPosition);
 							}
 						}

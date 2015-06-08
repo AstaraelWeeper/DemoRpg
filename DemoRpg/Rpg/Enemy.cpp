@@ -3,7 +3,8 @@
 
 Enemy::Enemy(short column, short row) :People(column,row)
 {
-	
+	attackRange = 32;
+	visible = true;
 }
 
 
@@ -14,7 +15,8 @@ Enemy::~Enemy()
 void Enemy::Attack() //expect you are colliding if in an attack state but best to check!
 {
 	
-		Enemy::attackState = true;
+   Enemy::attackState = true;
+		
 }
 
 void Enemy::CompleteAttack()
